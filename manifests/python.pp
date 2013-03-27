@@ -33,6 +33,6 @@ class memcached::python(
   package { $python_package:
     ensure   => $ensure,
     provider => $provider,
-    require  => Class['python'],
+    require  => Class['::python'],
   }
 }
