@@ -23,8 +23,8 @@ class memcached::python(
   $provider = $memcached::params::provider,
 ) inherits memcached::params {
 
-  # Use pip to install if requested or not in package repo.
-  if not $package or $provider == 'pip' {
+  if ! $package or $provider == 'pip' {
+    # Use pip to install if requested or not in package repo.
     $python_package = 'python-memcached'
   } else {
     $python_package = $package
