@@ -1,7 +1,7 @@
 memcached
 =========
 
-This module installs memcached and enables its service.
+This Puppet module installs memcached and enables its service.
 
 License
 -------
@@ -16,4 +16,4 @@ Justin Bronn <justin@counsyl.com>
 Support
 -------
 
-Please log tickets and issues at https://github.com/counsyl/puppet-memcached
+Please log tickets and issues at https://github.counsyl.com/dev/puppet-memcached
