@@ -38,6 +38,7 @@
 class memcached::config(
   $config_file = $memcached::params::config,
   $port        = $memcached::params::port,
+  $user        = $memcached::params::user,
   $cachesize   = $memcached::params::cachesize,
   $maxconn     = $memcached::params::maxconn,
   $listen      = $memcached::params::listen,

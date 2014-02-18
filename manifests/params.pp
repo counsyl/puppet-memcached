@@ -10,7 +10,7 @@ class memcached::params {
       $package  = 'memcached'
       $python   = 'python-memcache'
       $service  = 'memcached'
-      $user     = 'nobody'
+      $user     = 'memcache'
       $logfile  = '/var/log/memcached.log'
       $config   = '/etc/memcached.conf'
       $template = 'memcached/memcached.debian.erb'
