@@ -10,7 +10,16 @@ class memcached::params {
       $package  = 'memcached'
       $python   = 'python-memcache'
       $service  = 'memcached'
-      $user     = 'memcache'
+      case $::lsbdistcodename {
+        'lucid', 'squeeze': {
+          # On older versions, memcached ran as 'nobody', see:
+          #  https://bugs.launchpad.net/ubuntu/+source/memcached/+bug/599461
+          $user = 'nobody'
+        }
+        default: {
+          $user = 'memcache'
+        }
+      }
       $logfile  = '/var/log/memcached.log'
       $config   = '/etc/memcached.conf'
       $template = 'memcached/memcached.debian.erb'
