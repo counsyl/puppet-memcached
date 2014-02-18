@@ -11,6 +11,9 @@
 # [*port*]
 #  The port on which the memcached daemon will listen.  Defaults to 11211.
 #
+# [*user*]
+#  The user to run the memcached daemon as, default is platform dependent.
+#
 # [*cachesize*]
 #  The total cache size for memcached to use, in megabytes.
 #  Defaults to 64.
@@ -38,6 +41,7 @@
 class memcached::config(
   $config_file = $memcached::params::config,
   $port        = $memcached::params::port,
+  $user        = $memcached::params::user,
   $cachesize   = $memcached::params::cachesize,
   $maxconn     = $memcached::params::maxconn,
   $listen      = $memcached::params::listen,
