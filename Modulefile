@@ -1,5 +1,5 @@
 name    'counsyl-memcached'
-version '0.9.0'
+version '0.9.1'
 source  'git://github.counsyl.com/dev/puppet-memcached.git'
 author  'Counsyl, Inc.'
 license 'Apache License, Version 2.0'
@@ -7,4 +7,4 @@ summary 'Puppet module for installing and configuring memcached'
 description 'Puppet module for installing and configuring memcached'
 project_page 'https://github.counsyl.com/dev/puppet-memcached'
 
-dependency 'counsyl/sys', '>= 0.9.0'
+dependency 'counsyl/sys', '>= 0.9.11'
