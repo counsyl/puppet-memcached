@@ -4,12 +4,7 @@
 #
 class memcached::params {
   case $::osfamily {
-    debian: {
-      $devel    = 'libmemcached-dev'
-      $library  = 'libmemcache0'
-      $package  = 'memcached'
-      $python   = 'python-memcache'
-      $service  = 'memcached'
+    'Debian': {
       case $::lsbdistcodename {
         'lucid', 'squeeze': {
           # On older versions, memcached ran as 'nobody', see:
@@ -20,19 +15,45 @@ class memcached::params {
           $user = 'memcache'
         }
       }
-      $logfile  = '/var/log/memcached.log'
-      $config   = '/etc/memcached.conf'
-      $template = 'memcached/memcached.debian.erb'
+
+      # The libmemcached library's package name depends on the distribution.
+      case $::lsbdistcodename {
+        'squeeze': {
+          $lib = 'libmemcached5'
+        }
+        'precise': {
+          $lib = 'libmemcached6'
+        }
+        'trusty', 'wheezy': {
+          $lib = 'libmemcached10'
+        }
+        'jessie', 'utopic', 'vivid': {
+          $lib = 'libmemcached11'
+        }
+        default: {
+          fail("Do not know the libmemcached package on ${::lsbdistcodename}")
+        }
+      }
+
+      $devel     = 'libmemcached-dev'
+      $package   = 'memcached'
+      $python    = 'python-memcache'
+      $service   = 'memcached'
+      $lib_devel = 'libmemcached-dev'
+      $logfile   = '/var/log/memcached.log'
+      $config    = '/etc/memcached.conf'
+      $template  = 'memcached/memcached.debian.erb'
     }
-    redhat: {
-      $devel    = 'libmemcached-devel'
-      $library  = 'libmemcached'
-      $package  = 'memcached'
-      $python   = 'python-memcached'
-      $service  = 'memcached'
-      $user     = 'memcached'
-      $config   = '/etc/sysconfig/memcached'
-      $template = 'memcached/memcached.redhat.erb'
+    'RedHat': {
+      $devel     = 'memcached-devel'
+      $lib       = 'libmemcached'
+      $lib_devel = 'libmemcached-devel'
+      $package   = 'memcached'
+      $python    = 'python-memcached'
+      $service   = 'memcached'
+      $user      = 'memcached'
+      $config    = '/etc/sysconfig/memcached'
+      $template  = 'memcached/memcached.redhat.erb'
     }
     default: {
       fail("Do not know how to install memcached on ${::osfamily}.\n")
