@@ -21,8 +21,10 @@ class memcached::devel(
   $package  = $memcached::params::devel,
   $provider = $memcached::params::provider,
 ) inherits memcached::params {
-  package { $package:
-    ensure   => $ensure,
-    provider => $provider,
+  if $package {
+    package { $package:
+      ensure   => $ensure,
+      provider => $provider,
+    }
   }
 }
