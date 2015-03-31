@@ -2,27 +2,41 @@
 #
 # Installs the memcached package and enables the service.
 #
+# === Parameters
+#
+# [*ensure*]
+#  The ensure value for the memcached package, defaults to 'installed'.
+#
+# [*package*]
+#  The memcached package to install, defaults to 'memcached'.
+#
+# [*service*]
+#  The memcached service to manage, defaults to 'memcached'.
+#
+# [*service_enable*]
+#  The enable value for the memcached service, defaults to true.
+#
+# [*service_ensure*]
+#  The ensure value for the memcached service, defaults to 'running'.
+#
 class memcached(
   $ensure         = 'installed',
-  $service_ensure = 'running',
   $package        = $memcached::params::package,
-  $provider       = $memcached::params::provider,
   $service        = $memcached::params::service,
+  $service_enable = true,
+  $service_ensure = 'running',
 ) inherits memcached::params {
   # Install memcached.
   package { $package:
-    ensure   => $ensure,
-    alias    => 'memcached',
-    provider => $provider,
+    ensure => $ensure,
   }
 
-  # Enable memcached service.
-  service { $service:
-    ensure     => $service_ensure,
-    alias      => 'memcached',
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-    require    => Package[$package],
+  if $ensure != 'absent' {
+    # Enable memcached service.
+    service { $service:
+      ensure  => $service_ensure,
+      enable  => $service_enable,
+      require => Package[$package],
+    }
   }
 }
