@@ -32,7 +32,7 @@ class { 'memcached':
 
 ### `memcached::config`
 
-By default, the `memcached` class does not modify the configuration file used by Linux platforms.  Customizations of this file are done with the `memcached::config` class.  For example to allow connections from beyond the localhost you'd set the `listen` parameter:
+By default, the `memcached` class does not modify the configuration file used by Linux platforms.  Customizations of this file are done with the `memcached::config` class.  For example, to allow connections from beyond the localhost you'd set the `listen` parameter:
 
 ```puppet
 class { 'memcached::config':
@@ -73,6 +73,10 @@ Installs the [libMemcached](http://libmemcached.org/libMemcached.html) library p
 ### `memcached::lib::devel`
 
 Installs the libMemcached development headers package.
+
+### `memcached::python`
+
+Installs the system package for [python-memcached](https://pypi.python.org/pypi/python-memcached).
 
 License
 -------
