@@ -59,7 +59,7 @@ class memcached::config(
     group   => $sys::root_group,
     mode    => '0644',
     content => template($template),
-    notify  => Service['memcached'],
-    require => Package['memcached'],
+    notify  => Service[$memcached::service],
+    require => Package[$memcached::package],
   }
 }
