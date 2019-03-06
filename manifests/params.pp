@@ -27,7 +27,7 @@ class memcached::params {
         'trusty', 'wheezy': {
           $lib = 'libmemcached10'
         }
-        'jessie', 'utopic', 'vivid': {
+        'jessie', 'utopic', 'vivid', 'xenial', 'bionic': {
           $lib = 'libmemcached11'
         }
         default: {
